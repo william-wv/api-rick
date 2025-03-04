@@ -1,0 +1,38 @@
+@import './base.css';
+
+:root {
+  --White: #fff;
+  --Green: 	#97ce4c;
+  --Black: #0f091e;
+  --Brown: #1e0c0c;
+
+}
+*{
+  margin: 0 !important;
+  padding: 0 !important;
+  
+}
+
+li{
+  list-style: none;
+  cursor: pointer;
+}
+
+a{
+  color: --Black;
+  cursor: pointer;
+}
+
+main {
+  padding: 50px 170px;
+}
+
+h1,h2,h3,li,p,a {
+  font-family: "Inter", serif;
+  color: var(--White);
+}
+
+a {
+  text-decoration: none !important; 
+  color: inherit !important; 
+}
