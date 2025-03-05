@@ -6,7 +6,7 @@ import HeaderPage from './components/HeaderPage.vue';
 
 <template>
   <HeaderPage/>
-  <router-view></router-view>
+  <router-view :key="$route.fullPath"></router-view>
 </template> 
 
 <style scoped>

@@ -11,13 +11,12 @@ export async function getCharacters() {
     return response
 }
 
-// export async function getCharacter(id) {
-//     const response = await api.get(`character/${id}`)
-//     return response
-// }
-
 export async function getLocalization() {
-    const response = await api.get('locations')
+    const response = await api.get('location')
     return response
 }
 
+export async function getEpisodes() {
+    const response = await api.get('episode')
+    return response
+}

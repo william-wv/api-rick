@@ -1,16 +1,19 @@
-import App from '@/App.vue'
+
 import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     { path: '/', component: HomeView},
     {
-        path: '/ricky',
+        path: '/personagens/:page?',
         component: () => import('@/views/PersonagensRick.vue'),
-        meta: {
-            title: 'Ricky'
-        }
-    }
+        props: true,
+        name: 'personagens'
+    },
+    {
+        path: '/location',
+        component: () => import('@/views/LocationsSerie.vue'),
+    },
 ]
 
 const router = createRouter({
@@ -19,7 +22,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log('beforeEach')
     next()
 })
 

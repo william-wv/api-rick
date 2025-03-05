@@ -49,9 +49,21 @@ export default {
       <!-- Menu de Navegação -->
       <nav :class="{ open: isMenuOpen || !isMobile }" class="nav">
         <ul class="nav-links">
-          <li @click="closeMenu"><router-link to="/">Home</router-link></li>
-          <li @click="closeMenu"><router-link to="/ricky">Personagens</router-link></li>
-          <li @click="closeMenu"><a href="#">Localizações</a></li>
+          <li @click="closeMenu">
+            <router-link to="/">
+              Home
+            </router-link>
+          </li>
+          <li @click="closeMenu">
+            <router-link to="/personagens">
+              Personagens
+            </router-link>
+          </li>
+          <li @click="closeMenu"> 
+            <router-link to="/location">
+              Localizações
+            </router-link>
+          </li>
           <li @click="closeMenu"><a href="#">Episódios</a></li>
         </ul>
       </nav>
@@ -60,15 +72,15 @@ export default {
 </template>
 
 <style scoped>
-/* Estilização Geral */
 .header {
   background-color: var(--Brown);
-  margin-bottom: 25px !important; 
-
+  margin-bottom: 25px !important;
+  padding: 0 40px !important;
 }
 
 .container-header {
-  display: flex;  justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -121,7 +133,7 @@ export default {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .nav {
     position: absolute;
     top: 80px;
