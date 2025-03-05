@@ -36,3 +36,17 @@ a {
   text-decoration: none !important; 
   color: inherit !important; 
 }
+
+.btn-naveg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 25px 0 !important;
+}
+
+.btn-green{
+  background-color: green !important;
+  color: white;
+  padding: 10px !important;
+}

@@ -55,7 +55,7 @@ export default {
             </router-link>
           </li>
           <li @click="closeMenu">
-            <router-link to="/personagens">
+            <router-link to="/character">
               Personagens
             </router-link>
           </li>

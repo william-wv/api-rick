@@ -1,26 +1,54 @@
 <script setup>
+import { prxPagi } from '@/services/HttpService';
 import { getCharacters } from '@/services/HttpService'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-const personagens = ref([]);
-const route = useRoute();  // Acessa a rota atual
+const personagens = ref([])
+const route = useRoute()
+const pagina = ref(1)
 
-async function getPersonagens(page) {
-    const resultado = await getCharacters(page)
+async function getPersonagens() {
+    const resultado = await getCharacters()
     personagens.value = resultado.data.results
 }
 
+async function carregarPagina() {
+    const dados = await prxPagi(pagina.value);
+    if (dados) {
+        personagens.value = dados.results;
+    }
+}
+
+function proximaPagina() {
+    if (pagina.value < 42) {
+        pagina.value++;
+        carregarPagina();
+    }
+}
+
+function paginaAnterior() {
+    if (pagina.value > 1) {
+        pagina.value--;
+        carregarPagina();
+    }
+}
+
 onMounted(() => {
-    getPersonagens(route.params.page);
+    carregarPagina();
+});
+onMounted(() => {
+    getPersonagens(route.params.page)
 })
 
 watch(
-    () => route.params.page,  
+    () => route.params.page,
     (newPage) => {
-    getPersonagens(newPage); 
+        getPersonagens(newPage)
     }
 )
+
+
 
 </script>
 <template>
@@ -40,12 +68,28 @@ watch(
                                 gray: pers.status !== 'Alive' && pers.status !== 'Dead'
                             }">
                             </span>
+                            - {{ pers.species }}
                         </li>
-                        <li class="li-item species"> Species: {{ pers.species }}</li>
                         <li class="li-item gender"> Gender: {{ pers.gender }}</li>
                         <li class="li-item location"> Last location: {{ pers.location.name }}</li>
+                        <li class="li-item location">
+                            <router-link class="link" to="/episodeosPers">Episodeos participantes</router-link>
+                        </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+
+        <div class="btn-naveg">
+
+            <div class="btn-menos">
+                <button class="btn-green" @click="paginaAnterior" :disabled="pagina === 1">Anterior</button>
+            </div>
+            <div>
+                Pagina {{ pagina }} de 42
+            </div>
+            <div class="btn-mais">
+                <button class="btn-green" @click="proximaPagina" :disabled="pagina === 42">Próxima</button>
             </div>
         </div>
     </main>
@@ -127,10 +171,10 @@ main {
     font-size: 1rem;
 }
 
+
 @media (max-width:400px) {
     li {
         line-height: 1rem;
-
     }
 }
 
@@ -160,8 +204,6 @@ main {
     img {
         width: 100%;
     }
-
-    li {}
 }
 
 @media (min-width:1441px) and (max-width:2560px) {

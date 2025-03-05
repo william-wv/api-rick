@@ -1,12 +1,35 @@
 <script setup>
 import { getLocalization } from '@/services/HttpService';
 import { onMounted, ref } from 'vue';
+import { proxPagiLoc } from '@/services/HttpService'
 
 const locations = ref([]);
+const pagina = ref(1); 
 
 async function getLocalizations() {
   const result = await getLocalization()
   locations.value = result.data.results;
+}
+
+async function carregarPaginas() {
+  const dados = await proxPagiLoc(pagina.value)
+  if (dados) {
+      locations.value = dados.results;
+    }
+}
+
+function proximaPagina() {
+  if (pagina.value < 7) {
+    pagina.value++;
+    carregarPaginas();
+  }
+}
+
+function voltarPagina() {
+  if (pagina.value > 1) {
+    pagina.value--;
+    carregarPaginas();
+  }
 }
 
 onMounted(() => {
@@ -36,6 +59,11 @@ onMounted(() => {
       </ul>
     </div>
   </div>
+  <div class="btn-naveg">
+    <button class="btn-green" @click="voltarPagina">Voltar</button>
+    <span>{{ pagina }} - 7</span> 
+    <button class="btn-green" @click="proximaPagina">Próxima</button>
+  </div>
 </template>
 
 <style scoped>
@@ -53,7 +81,6 @@ li {
   padding: 10px !important;
   margin: 0 50px !important;
   gap: 20px !important;
-
 }
 
 .card-loc {
@@ -65,9 +92,12 @@ li {
   background-color:var(--Green);
 }
 
+
+
 @media (min-width: 768px) {
   .div-loc {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 </style>
