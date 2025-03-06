@@ -102,11 +102,17 @@ watch(
     grid-gap: 30px;
 }
 
+h1 {
+    margin-bottom: 25px !important;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
 img {
     width: 30vw;
     height: auto;
-    border-radius: 15px 0 0 15px;
+    border-radius: 150px 0 0 150px;
 }
 
 li {
@@ -147,7 +153,7 @@ main {
 }
 
 .card-personagem {
-    border-radius: 15px;
+    border-radius: 150px 0 0 150px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
         -5px -5px 10px rgba(255, 255, 255, 0.8);
 }

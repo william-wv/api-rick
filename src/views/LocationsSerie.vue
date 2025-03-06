@@ -69,6 +69,9 @@ onMounted(() => {
 <style scoped>
 h1 {
   margin-bottom: 25px !important;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 li {
@@ -89,7 +92,7 @@ li {
   box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.3),
     5px 5px 10px rgba(255, 255, 255, 0.8);
   padding: 20px !important;
-  background-color:var(--Green);
+  background-color: #ddd;
 }
 
 
@@ -99,5 +102,13 @@ li {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+@media (min-width:1025px) {
+  .div-loc {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 
 </style>
